@@ -1,4 +1,4 @@
-package com.jira.service;
+package com.application.service;
 
 import org.springframework.stereotype.Component;
 

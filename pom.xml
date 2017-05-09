@@ -69,7 +69,7 @@
 				<outputDirectory>${basedir}/target/classes/static/</outputDirectory >
 					<resources>
 						<resource>
-							<directory>${basedir}/../JiraClient/dist</directory >
+							<directory>${basedir}/../JiraClient2/dist</directory >
 						</resource>
 					</resources>
 			</configuration>

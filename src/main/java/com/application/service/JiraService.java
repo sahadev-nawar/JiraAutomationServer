@@ -78,6 +78,67 @@ public class JiraService {
 		}
 
 		return sb.toString();
-}
+	}
+	
+	public String createJiraNew(String inputJson)
+	{
+		StringBuffer sb=new StringBuffer("");
+	
+		try{
+
+			DefaultHttpClient httpClient = new DefaultHttpClient();
+			
+			httpClient.getAuthSchemes().register("ntlm", new NTLMSchemeFactory());
+	        NTCredentials creds = new NTCredentials("m71809", "qwer123$","W7D13390","ACCDOM01");
+	        httpClient.getCredentialsProvider().setCredentials(AuthScope.ANY, creds);
+	        
+			HttpPost httpPost = new HttpPost("https://daredkar.atlassian.net/rest/api/2/issue");
+	
+			StringEntity input = new StringEntity(inputJson);
+			input.setContentType("application/json");
+			httpPost.setEntity(input);
+			
+			httpPost.addHeader("X-Atlassian-Token","no-check");
+			httpPost.addHeader("Authorization","Basic YWRtaW46U2hhbWlrYUAxMTEy");		
+		
+			 HttpParams httpParameters = new BasicHttpParams();           
+	        HttpHost proxy = new HttpHost("localhost",3128);	        
+	         httpParameters.setParameter(ConnRoutePNames.DEFAULT_PROXY,proxy);
+	            
+	         httpClient.setParams(httpParameters);
+	
+			HttpResponse response = httpClient.execute(httpPost);
+	
+			if (response.getStatusLine().getStatusCode() != 201) {
+				throw new RuntimeException("Failed : HTTP error code : "
+						+ response.getStatusLine().getStatusCode());
+			}
+	
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(response.getEntity().getContent())));
+	
+			String output;
+			System.out.println("Output from Server .... \n");
+			while ((output = br.readLine()) != null) {
+	
+				System.out.println(output);
+				sb.append(output);
+			}
+	
+			httpClient.getConnectionManager().shutdown();
+	
+		} catch (MalformedURLException e) {
+	
+	                 e.printStackTrace();
+	 } catch (IOException e) {
+	
+	                 e.printStackTrace();
+	
+		}
+
+		return sb.toString();
+	}
+	
+	
 	
 }

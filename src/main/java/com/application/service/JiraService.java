@@ -43,7 +43,7 @@ public class JiraService {
 			httpPost.addHeader("Authorization","Basic YWRtaW46U2hhbWlrYUAxMTEy");		
 		
 			 HttpParams httpParameters = new BasicHttpParams();           
-	        HttpHost proxy = new HttpHost("localhost",5865);	        
+	        HttpHost proxy = new HttpHost("localhost",3128);	        
 	         httpParameters.setParameter(ConnRoutePNames.DEFAULT_PROXY,proxy);
 	            
 	         httpClient.setParams(httpParameters);

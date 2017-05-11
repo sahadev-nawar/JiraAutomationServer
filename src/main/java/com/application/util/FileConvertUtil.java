@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,9 +15,7 @@ import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 
 
 
-
-
-@Component
+@Service
 public class FileConvertUtil {
 
 	

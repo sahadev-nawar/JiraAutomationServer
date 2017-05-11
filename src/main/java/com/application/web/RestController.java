@@ -42,9 +42,9 @@ public class RestController {
 	@Autowired
 	FileConvertUtil util;
 	
-	 @RequestMapping(value="/createJira")
+	 @RequestMapping(value="/createJira",method=RequestMethod.POST)
 	 public String createJira(@RequestBody String inputJson)  {		 
-	  return jiraService.createJiraNew(inputJson);
+	  return jiraService.createJiraNew(inputJson);	 
 	 }
 	 
 	 @RequestMapping("/convert")

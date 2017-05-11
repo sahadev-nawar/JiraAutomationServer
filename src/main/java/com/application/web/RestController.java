@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.application.service.JiraService;
 import com.application.util.FileConvertUtil;
@@ -48,10 +49,9 @@ public class RestController {
 	 }
 	 
 	 @RequestMapping("/convert")
-	 public String convert() throws IOException
-	 {
-		 util.convertCSVToJson();
-		 return "done";
+	 public String convert(@RequestBody MultipartFile file) throws IOException
+	 {	 
+		 return util.convertCSVToJson(file);
 	 }
 	 
 	 @RequestMapping("/hello")

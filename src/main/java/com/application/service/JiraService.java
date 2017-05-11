@@ -16,12 +16,18 @@ import org.apache.http.impl.auth.NTLMSchemeFactory;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpParams;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
+import com.application.GlobalProperties;
 
 @Service
 public class JiraService {
 	
+	@Autowired
+	GlobalProperties gb;
 	
 	@SuppressWarnings("deprecation")
 	public String createJiraNew(String inputJson)
@@ -32,6 +38,9 @@ public class JiraService {
 
 			DefaultHttpClient httpClient = new DefaultHttpClient();
 			
+			// if dev.env is set to true in properties files, then use ntlm else not 
+			if(gb.getDevEnv().equals("true"))
+			{
 			httpClient.getAuthSchemes().register("ntlm", new NTLMSchemeFactory());
 	        NTCredentials creds = new NTCredentials("m71809", "qwer123$","W7D13390","ACCDOM01");
 	        httpClient.getCredentialsProvider().setCredentials(AuthScope.ANY, creds);
@@ -39,7 +48,7 @@ public class JiraService {
 	        HttpHost proxy = new HttpHost("localhost",3128);	        
 	        httpParameters.setParameter(ConnRoutePNames.DEFAULT_PROXY,proxy);
 	        httpClient.setParams(httpParameters);
-	        
+			}
 			HttpPost httpPost = new HttpPost("https://daredkar.atlassian.net/rest/api/2/issue");
 	
 			StringEntity input = new StringEntity(inputJson);

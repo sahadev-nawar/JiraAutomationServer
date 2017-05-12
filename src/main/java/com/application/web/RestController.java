@@ -22,6 +22,7 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,9 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.application.service.JiraService;
 import com.application.util.FileConvertUtil;
 
-
-
-
+//@CrossOrigin("http://localhost:4200")
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
 	
@@ -41,20 +40,21 @@ public class RestController {
 	JiraService jiraService;
 	
 	@Autowired
-	FileConvertUtil util;
-	
+	FileConvertUtil util;		
+	 
+	 
 	 @RequestMapping(value="/createJira",method=RequestMethod.POST)
 	 public String createJira(@RequestBody String inputJson)  {		 
 	  return jiraService.createJiraNew(inputJson);	 
 	 }
 	 
-	 @RequestMapping("/convert")
+	 @RequestMapping(value="/convert",method=RequestMethod.POST,produces = "application/json")
 	 public String convert(@RequestBody MultipartFile file) throws IOException
 	 {	 
 		 return util.convertCSVToJson(file);
 	 }
 	 
-	 @RequestMapping("/hello")
+	 @RequestMapping(value="/hello")
 	 public String sayHi(@RequestBody String a) 
 	 {		
 		 return a;

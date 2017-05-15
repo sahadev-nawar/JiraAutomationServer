@@ -60,6 +60,14 @@ public class RestController {
 		 return a;
 	 }
 	 
+	 @RequestMapping(value="/DBCheck")
+	 public int dbCheck() 
+	 {		
+		 return jiraService.addData();
+	 }
+	 
+	 
+	 
  
  
 }

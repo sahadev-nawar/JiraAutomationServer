@@ -22,12 +22,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.application.GlobalProperties;
+import com.application.domain.dao.JiraHPSMRepository;
 
 @Service
 public class JiraService {
 	
 	@Autowired
 	GlobalProperties gb;
+	
+	@Autowired
+	JiraHPSMRepository jiraRepo;
 	
 	@SuppressWarnings("deprecation")
 	public String createJiraNew(String inputJson)
@@ -88,6 +92,12 @@ public class JiraService {
 		}
 
 		return sb.toString();
+	}
+
+	public int addData() {
+		
+		return jiraRepo.addData("hpsm1","jira1");
+		
 	}
 	
 	

@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS jirahpsmdetails;
+CREATE TABLE jirahpsmdetails (
+  id INT NOT NULL AUTO_INCREMENT,
+  hpsm_ID VARCHAR(100) NOT NULL,
+  jira_ID VARCHAR(100) NOT NULL,
+  created_date DATE NOT NULL,
+  PRIMARY KEY (id));

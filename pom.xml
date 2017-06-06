@@ -54,7 +54,7 @@
    		 <dependency>
  		 	<groupId>com.fasterxml.jackson.dataformat</groupId>
   			<artifactId>jackson-dataformat-csv</artifactId>
-  			<version>2.8.8</version>
+  			<version>2.8.8</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
 
 
@@ -110,7 +110,7 @@
 				<outputDirectory>${basedir}/target/classes/static/</outputDirectory >
 					<resources>
 						<resource>
-							<directory>${basedir}/../JiraClient2/dist</directory >
+							<directory>${basedir}/../JiraClient/dist</directory >
 						</resource>
 					</resources>
 			</configuration>

@@ -43,13 +43,13 @@ public class RestController {
 	@Autowired
 	FileConvertUtil util;		
 	 
-	@CrossOrigin("http://localhost:4200")
+	
 	 @RequestMapping(value="/createJira",method=RequestMethod.POST)
 	 public String createJira(@RequestBody String inputJson)  {		 
 	  return jiraService.createJiraNew(inputJson);	 
 	 }
 	 
-	 @CrossOrigin("http://localhost:4200")
+	
 	 @RequestMapping(value="/convert",method=RequestMethod.POST,produces = "application/json")
 	 public String convert(@RequestBody MultipartFile file) throws IOException
 	 {	 
@@ -61,14 +61,14 @@ public class RestController {
 	 {		
 		 return a;
 	 }
-	 @CrossOrigin("http://localhost:4200")
+	
 	 @RequestMapping(value="/DBCheck")
 	 public int dbCheck() 
 	 {		
 		 return jiraService.addData();
 	 }
 	 
-	 //@CrossOrigin("http://localhost:4200")
+
 	 @RequestMapping(value="/attachment/{key}",method=RequestMethod.POST,produces = "application/json")
 	 public String uploadAttachment(@RequestBody MultipartFile file, @PathVariable("key") String key) throws IOException
 	 {	 

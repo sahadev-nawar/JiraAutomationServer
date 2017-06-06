@@ -32,13 +32,30 @@ public class FileConvertUtil {
 	
 	private  File multipartToFile(MultipartFile multipart) throws IllegalStateException, IOException 
 	{
-		File convFile = new File(multipart.getOriginalFilename());
+		/*File convFile = new File(multipart.getOriginalFilename());		
 		convFile.createNewFile();
 		FileOutputStream fos = new FileOutputStream(convFile);
 		fos.write(multipart.getBytes());
 		fos.close();
-		return convFile;
-	    
+		return convFile;*/
+				
+				// Creating the directory to store file
+				String rootPath = System.getProperty("catalina.home");
+				File dir = new File(rootPath + File.separator + "tmpFiles");
+				if (!dir.exists())
+					dir.mkdirs();
+
+				// Create the file on server
+				File serverFile = new File(dir.getAbsolutePath()+ File.separator + multipart.getOriginalFilename());				
+				
+				//File convFile = new File(multipart.getOriginalFilename());		
+				//convFile.createNewFile();
+				FileOutputStream fos = new FileOutputStream(serverFile);
+				fos.write(multipart.getBytes());
+				fos.close();
+				System.out.println(serverFile);
+				return serverFile;
+				
 	}
 	private List<Map<?, ?>> readObjectsFromCsv(File file) throws IOException {
         CsvSchema bootstrap = CsvSchema.emptySchema().withHeader();

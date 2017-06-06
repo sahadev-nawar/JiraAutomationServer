@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 public class GlobalProperties {
 	
 	
-	 @Value("${devEnv}")
-	 private String devEnv;
+	// @Value("${devEnv}")
+	private String devEnv;
 
 	public String getDevEnv() {
 		return devEnv;

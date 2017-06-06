@@ -32,7 +32,7 @@ public class FileConvertUtil {
 	
 	private  File multipartToFile(MultipartFile multipart) throws IllegalStateException, IOException 
 	{
-		File convFile = new File("c:\\" + multipart.getOriginalFilename());
+		File convFile = new File(multipart.getOriginalFilename());
 		convFile.createNewFile();
 		FileOutputStream fos = new FileOutputStream(convFile);
 		fos.write(multipart.getBytes());

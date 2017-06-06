@@ -23,6 +23,7 @@ import org.apache.http.params.HttpParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,12 +43,13 @@ public class RestController {
 	@Autowired
 	FileConvertUtil util;		
 	 
-	 
+	@CrossOrigin("http://localhost:4200")
 	 @RequestMapping(value="/createJira",method=RequestMethod.POST)
 	 public String createJira(@RequestBody String inputJson)  {		 
 	  return jiraService.createJiraNew(inputJson);	 
 	 }
 	 
+	 @CrossOrigin("http://localhost:4200")
 	 @RequestMapping(value="/convert",method=RequestMethod.POST,produces = "application/json")
 	 public String convert(@RequestBody MultipartFile file) throws IOException
 	 {	 
@@ -59,13 +61,19 @@ public class RestController {
 	 {		
 		 return a;
 	 }
-	 
+	 @CrossOrigin("http://localhost:4200")
 	 @RequestMapping(value="/DBCheck")
 	 public int dbCheck() 
 	 {		
 		 return jiraService.addData();
 	 }
 	 
+	 //@CrossOrigin("http://localhost:4200")
+	 @RequestMapping(value="/attachment/{key}",method=RequestMethod.POST,produces = "application/json")
+	 public String uploadAttachment(@RequestBody MultipartFile file, @PathVariable("key") String key) throws IOException
+	 {	 
+		 return jiraService.uploadAttachment(key, file);
+	 }
 	 
 	 
  
